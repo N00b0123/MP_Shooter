@@ -6,24 +6,34 @@
 #include "GameFramework/Character.h"
 #include "ShooterCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class MP_SHOOTER_API AShooterCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	AShooterCharacter();
+	virtual void Tick(float DeltaTime) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	void MoveForward(float value);
+	void MoveRigth(float value);
+	void MoveUpDown(float value);
+	void Turn(float value);
+	void LookUp(float value);
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+private:	
+
+	UPROPERTY(VisibleAnywhere, Category = Camera)
+		USpringArmComponent* springArm;
+
+	UPROPERTY(VisibleAnywhere, Category = Camera)
+		UCameraComponent* viewCamera;
 
 };
