@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UWidgetComponent;
 
 UCLASS()
 class MP_SHOOTER_API AShooterCharacter : public ACharacter
@@ -31,9 +32,12 @@ protected:
 private:	
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
-		USpringArmComponent* springArm;
+	USpringArmComponent* springArm;
 
 	UPROPERTY(VisibleAnywhere, Category = Camera)
-		UCameraComponent* viewCamera;
+	UCameraComponent* viewCamera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	UWidgetComponent* OverheadWidget;
 
 };
